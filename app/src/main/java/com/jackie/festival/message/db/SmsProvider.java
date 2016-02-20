@@ -43,7 +43,7 @@ public class SmsProvider extends ContentProvider {
             case SMS_ONE:
                 long id = ContentUris.parseId(uri);
                 selection = "_id = ?";
-                selectionArgs = new String[]{String.valueOf(id)};
+                selectionArgs = new String[]{ String.valueOf(id)};
                 break;
             default:
                 throw new IllegalArgumentException("Wrong URI " + uri);
@@ -51,6 +51,7 @@ public class SmsProvider extends ContentProvider {
 
         mSQLiteDatabase = mSmsOpenHelper.getReadableDatabase();
         Cursor cursor = mSQLiteDatabase.query(Constant.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
+        //注册监听该ContentProvider里的数据是否发生变化
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
         return cursor;
     }

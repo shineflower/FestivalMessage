@@ -54,7 +54,7 @@ public class SentMessage {
         return mFestivalName;
     }
 
-    public void seFestivalName(String festivalName) {
+    public void setFestivalName(String festivalName) {
         this.mFestivalName = festivalName;
     }
 

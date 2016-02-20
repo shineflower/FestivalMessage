@@ -9,11 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.jackie.festival.message.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
 
-    private static final String[] TITLES = { "节日短信", "发送记录" };
+    private List<Fragment> mFragmentList;
+
+    private static final String[] TITLES = {"节日短信", "发送记录"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +33,16 @@ public class MainActivity extends AppCompatActivity {
         mTabLayout = (TabLayout) findViewById(R.id.tab_layout);
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
 
+        mFragmentList = new ArrayList<>();
+        FestivalCategoryFragment festivalCategoryFragment = new FestivalCategoryFragment();
+        SmsHistoryFragment smsHistoryFragment = new SmsHistoryFragment();
+        mFragmentList.add(festivalCategoryFragment);
+        mFragmentList.add(smsHistoryFragment);
+
         mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                return new FestivalCategoryFragment();
+                return mFragmentList.get(position);
             }
 
             @Override

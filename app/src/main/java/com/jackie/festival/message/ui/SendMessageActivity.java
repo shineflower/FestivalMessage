@@ -132,6 +132,7 @@ public class SendMessageActivity extends AppCompatActivity {
             numbers += number + ":";
         }
         sentMessage.setContactNumber(numbers.substring(0, numbers.length() - 1));
+        sentMessage.setFestivalName(FestivalLab.getInstance().getFestivalById(mFestivalId).getName());
         return sentMessage;
     }
 
